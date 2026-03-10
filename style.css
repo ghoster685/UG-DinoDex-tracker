@@ -12,6 +12,31 @@ padding:20px;
 border-radius:10px;
 }
 
+.dino-title{
+cursor: pointer;
+user-select: none;
+font-size: 24px;
+margin: 0 0 10px 0;
+transition: 0.3s;
+}
+
+.dino-title:hover{
+color: #60a5fa;
+}
+
+.dino-content{
+max-height: 2000px;
+overflow: hidden;
+transition: max-height 0.3s ease-out;
+opacity: 1;
+}
+
+.dino-content.hidden{
+max-height: 0;
+opacity: 0;
+overflow: hidden;
+}
+
 .colors{
 display:grid;
 grid-template-columns:repeat(auto-fill,minmax(120px,1fr));
@@ -32,4 +57,14 @@ border-radius:6px;
 
 button{
 margin:3px;
+padding:5px 10px;
+background:#475569;
+color:white;
+border:none;
+border-radius:4px;
+cursor:pointer;
+}
+
+button:hover{
+background:#64748b;
 }
