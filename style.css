@@ -25,7 +25,7 @@ color: #60a5fa;
 }
 
 .dino-content{
-max-height: 2000px;
+max-height: 3000px;
 overflow: hidden;
 transition: max-height 0.3s ease-out;
 opacity: 1;
@@ -50,6 +50,23 @@ padding:10px;
 border-radius:6px;
 }
 
+.color-dinos{
+background:#475569;
+padding:8px;
+border-radius:4px;
+margin-top:8px;
+max-height:200px;
+overflow-y:auto;
+}
+
+.color-dino-container{
+background:#64748b;
+padding:5px;
+margin:3px 0;
+border-radius:3px;
+font-size:12px;
+}
+
 img{
 width:100px;
 border-radius:6px;
@@ -63,8 +80,14 @@ color:white;
 border:none;
 border-radius:4px;
 cursor:pointer;
+font-size:12px;
 }
 
 button:hover{
 background:#64748b;
+}
+
+p{
+margin:5px 0;
+font-size:14px;
 }
