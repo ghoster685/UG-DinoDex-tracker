@@ -11,14 +11,14 @@ d.className = "dino";
 let eggKey = dino.name+"_egg";
 let eggCount = localStorage.getItem(eggKey) || 0;
 
-let levelKey = dino.name+"_level";
-let level = localStorage.getItem(levelKey) || 0;
-
 let colorsHTML = "";
 
 for(let i=0;i<dino.colors;i++){
 let key = dino.name+"_color_"+i;
 let count = localStorage.getItem(key) || 0;
+
+let colorLevelKey = dino.name+"_color_"+i+"_level";
+let colorLevel = localStorage.getItem(colorLevelKey) || 0;
 
 colorsHTML += `
 <div class="color">
@@ -26,9 +26,8 @@ colorsHTML += `
 <img src="images/colors/${dino.name}_${i}.png"
 onerror="this.src='images/placeholder.png'">
 <br>
-<button onclick="changeColor('${key}',-1)">-</button>
-<span id="${key}">${count}</span>
-<button onclick="changeColor('${key}',1)">+</button>
+<p>Count: <button onclick="changeColor('${key}',-1)">-</button><span id="${key}">${count}</span><button onclick="changeColor('${key}',1)">+</button></p>
+<p>Level: <button onclick="changeColorLevel('${colorLevelKey}',-1)">-</button><span id="${colorLevelKey}">${colorLevel}</span><button onclick="changeColorLevel('${colorLevelKey}',1)">+</button></p>
 </div>
 `;
 }
@@ -40,11 +39,6 @@ d.innerHTML = `
 
 <img src="images/dinos/${dino.name}.png"
 onerror="this.src='images/placeholder.png'">
-
-<h3>Level</h3>
-<button onclick="changeLevel('${levelKey}',-1)">-</button>
-<span id="${levelKey}">${level}</span>
-<button onclick="changeLevel('${levelKey}',1)">+</button>
 
 <h3>Egg</h3>
 
@@ -89,7 +83,7 @@ localStorage.setItem(key,val);
 document.getElementById(key).innerText = val;
 }
 
-function changeLevel(key,amount){
+function changeColor(key,amount){
 let val = parseInt(localStorage.getItem(key) || 0);
 val += amount;
 if(val < 0) val = 0;
@@ -97,7 +91,7 @@ localStorage.setItem(key,val);
 document.getElementById(key).innerText = val;
 }
 
-function changeColor(key,amount){
+function changeColorLevel(key,amount){
 let val = parseInt(localStorage.getItem(key) || 0);
 val += amount;
 if(val < 0) val = 0;
