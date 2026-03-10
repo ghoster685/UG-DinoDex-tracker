@@ -15,10 +15,20 @@ let colorsHTML = "";
 
 for(let i=0;i<dino.colors;i++){
 let key = dino.name+"_color_"+i;
-let count = localStorage.getItem(key) || 0;
+let count = parseInt(localStorage.getItem(key) || 0);
 
-let colorLevelKey = dino.name+"_color_"+i+"_level";
-let colorLevel = localStorage.getItem(colorLevelKey) || 0;
+let colorDinosHTML = "";
+
+for(let j=0;j<count;j++){
+let colorDinoLevelKey = dino.name+"_color_"+i+"_dino_"+j+"_level";
+let colorDinoLevel = localStorage.getItem(colorDinoLevelKey) || 0;
+
+colorDinosHTML += `
+<div class="color-dino-container">
+<p>Dino #${j+1} - Level: <button onclick="changeColorDinoLevel('${colorDinoLevelKey}',-1)">-</button><span id="${colorDinoLevelKey}">${colorDinoLevel}</span><button onclick="changeColorDinoLevel('${colorDinoLevelKey}',1)">+</button></p>
+</div>
+`;
+}
 
 colorsHTML += `
 <div class="color">
@@ -27,7 +37,9 @@ colorsHTML += `
 onerror="this.src='images/placeholder.png'">
 <br>
 <p>Count: <button onclick="changeColor('${key}',-1)">-</button><span id="${key}">${count}</span><button onclick="changeColor('${key}',1)">+</button></p>
-<p>Level: <button onclick="changeColorLevel('${colorLevelKey}',-1)">-</button><span id="${colorLevelKey}">${colorLevel}</span><button onclick="changeColorLevel('${colorLevelKey}',1)">+</button></p>
+<div class="color-dinos">
+${colorDinosHTML}
+</div>
 </div>
 `;
 }
@@ -89,9 +101,10 @@ val += amount;
 if(val < 0) val = 0;
 localStorage.setItem(key,val);
 document.getElementById(key).innerText = val;
+loadDex();
 }
 
-function changeColorLevel(key,amount){
+function changeColorDinoLevel(key,amount){
 let val = parseInt(localStorage.getItem(key) || 0);
 val += amount;
 if(val < 0) val = 0;
